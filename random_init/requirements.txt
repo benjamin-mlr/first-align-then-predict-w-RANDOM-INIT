@@ -1,2 +1,4 @@
-# python >= 3.7
+# Requirements specific to random-init code 
+# python >= 3.6
+pip install torch==1.9.0
 pip install transformers==4.10.2
