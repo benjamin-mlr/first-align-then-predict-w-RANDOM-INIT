@@ -59,14 +59,29 @@ You can use random-init by importing BertModel from random_init.modeling_bert_ra
 Then, to use random-init, simply add the `random_init_layers` argument to the `from_pretrained()` method: 
 
  
-Example: Applying random-init to mBERT layer 0 and 1
+random_init_layers: List(str)
 
+To apply random-init to a specific layer in a model, add a string or a regex to random_init_layers that matches a layer name in the model.    
+For instance, to match the self-attention of the first layer in BERT, add `bert.encoder.layer.0.attention.*` to random_init_layers. This will randomly-initialize the first attention layer of mBERT.
+
+
+Example: Applying random-init to mBERT layer 0 and 1
 ```
-from random_init.modeling_bert_random_init import BertForTokenClassification
-mbert_w_random_init = BertForTokenClassification.from_pretrained("bert-base-multilingual-cased", 
-                                                                  random_init_layers=['bert.encoder.layer.[0-1]{1}.attention.*', 'bert.encoder.layer.[0-1]{1}.output.*', 'bert.encoder.layer.[0-
-                                                                  15]{1}.intermediate.*'])
+                                                          					 
+>>> from random_init.modeling_bert_random_init import BertForTokenClassification
+>>> mbert_w_random_init = BertForTokenClassification.from_pretrained("bert-base-multilingual-cased", random_init_layers=['bert.encoder.layer.[0-]{1}.attention.*', 'bert.encoder.layer.[0-1]{1}.output.*', 'bert.encoder.layer.[0-1]{1}.intermediate.*'])
+(stdout) RANDOM-INIT was applied to the following layers ['bert.encoder.layer.0.attention.', 'bert.encoder.layer.0.intermediate.', 'bert.encoder.layer.0.output.', 'bert.encoder.layer.1.attention.', 'bert.encoder.layer.1.intermediate.','bert.encoder.layer.1.output.']                                                                  					  
 ```
+
+Applying random-init to mBERT layer 10 and 11
+```
+                                                          					 
+>>> from random_init.modeling_bert_random_init import BertForTokenClassification
+>>> mbert_w_random_init = BertForTokenClassification.from_pretrained("bert-base-multilingual-cased", random_init_layers=['bert.encoder.layer.[10]{2}.attention.*', 'bert.encoder.layer.[10]{2}.output.*', 'bert.encoder.layer.[10]{2}.intermediate.*'])
+(stdout) RANDOM-INIT was applied to the following layers ['bert.encoder.layer.10.attention.', 'bert.encoder.layer.10.intermediate.', 'bert.encoder.layer.10.output.', 'bert.encoder.layer.11.attention.', 'bert.encoder.layer.11.intermediate.', 'bert.encoder.layer.11.output.'] based on argument ['bert.encoder.layer.[10]{2}.attention.*', 'bert.encoder.layer.[10]{2}.output.*', 'bert.encoder.layer.[10]{2}.intermediate.*']
+```
+
+
 
 
 
