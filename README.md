@@ -69,8 +69,8 @@ Example: Applying random-init to mBERT layer 0 and 1
 ```
                                                           					 
 >>> from random_init.modeling_bert_random_init import BertForTokenClassification
->>> mbert_w_random_init = BertForTokenClassification.from_pretrained("bert-base-multilingual-cased", random_init_layers=['bert.encoder.layer.[0-]{1}.attention.*', 'bert.encoder.layer.[0-1]{1}.output.*', 'bert.encoder.layer.[0-1]{1}.intermediate.*'])
-(stdout) RANDOM-INIT was applied to the following layers ['bert.encoder.layer.0.attention.', 'bert.encoder.layer.0.intermediate.', 'bert.encoder.layer.0.output.', 'bert.encoder.layer.1.attention.', 'bert.encoder.layer.1.intermediate.','bert.encoder.layer.1.output.']                                                                  					  
+>>> mbert_w_random_init = BertForTokenClassification.from_pretrained("bert-base-multilingual-cased", random_init_layers=['bert.encoder.layer.[0-1]{1}.attention.*', 'bert.encoder.layer.[0-1]{1}.output.*', 'bert.encoder.layer.[0-1]{1}.intermediate.*'])
+(stdout) RANDOM-INIT was applied to the following layers ['bert.encoder.layer.0.attention.', 'bert.encoder.layer.0.intermediate.', 'bert.encoder.layer.0.output.', 'bert.encoder.layer.1.attention.', 'bert.encoder.layer.1.intermediate.', 'bert.encoder.layer.1.output.'] based on argument ['bert.encoder.layer.[0-1]{1}.attention.*', 'bert.encoder.layer.[0-1]{1}.output.*', 'bert.encoder.layer.[0-1]{1}.intermediate.*']			  
 ```
 
 Applying random-init to mBERT layer 10 and 11

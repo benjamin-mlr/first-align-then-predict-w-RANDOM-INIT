@@ -1,3 +1,7 @@
+"""
+# from ./random_init
+python test_random_init/testing_random_init.py
+"""
 import torch
 import sys
 sys.path.insert(0, "..")
